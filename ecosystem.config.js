@@ -28,7 +28,8 @@ module.exports = {
       ref  : "origin/master",
       repo : "https://github.com/mycsHQ/reviewly.git",
       path : "/home/deploy",
-      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
+      "pre-deploy" : "npm install pm2 yarn -g",
+      "post-deploy" : "yarn install && pm2 startOrRestart ecosystem.json --env production"
     }
   }
 }
