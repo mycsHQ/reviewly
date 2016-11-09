@@ -28,7 +28,7 @@ module.exports = {
       ref  : "origin/master",
       repo : "https://github.com/mycsHQ/reviewly.git",
       path : "/home/deploy",
-      "post-deploy" : "npm install && node_modules/.bin/pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : "npm install && node_modules/.bin/pm2 startOrRestart ecosystem.config.js --env production"
     }
   }
 }
