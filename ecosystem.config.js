@@ -5,7 +5,7 @@ module.exports = {
    */
   apps : [
     {
-      name      : "feature-branch-deployment",
+      name      : "reviewly",
       script    : "src/index.js",
       node_args : "--harmony-async-await",
       env: {
