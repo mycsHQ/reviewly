@@ -2,3 +2,9 @@
 machine:
   node:
     version: 7
+
+deployment:
+  dev:
+    branch: master
+    commands:
+      - pm2 deploy
