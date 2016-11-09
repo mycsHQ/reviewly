@@ -1,0 +1,4 @@
+# The IP of the deployment instance is stored in the settings of Circleci (with the name FEATURE_DEPLOYEMENT_IP)
+machine:
+  node:
+    version: 7

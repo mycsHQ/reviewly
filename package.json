@@ -1,0 +1,27 @@
+{
+  "name": "reviewly",
+  "description": "Tiny NodeJS module to serve a given folder based on a subdomain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Nicolas Ritouet <nicolas@mycs.com>",
+  "private": false,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=7"
+  },
+  "scripts": {
+    "start": "node --harmony-async-await src/index.js",
+    "watch": "nodemon --harmony-async-await src/index.js",
+    "dev": "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js"
+  },
+  "dependencies": {
+    "koa": "next",
+    "koa-logger": "next",
+    "koa-send": "3",
+    "pm2": "^2.1.4"
+  },
+  "devDependencies": {
+    "nodejs-dashboard": "^0.1.2",
+    "nodemon": "^1.11.0"
+  }
+}
