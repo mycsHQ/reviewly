@@ -27,7 +27,7 @@ module.exports = {
       host : process.env.FEATURE_DEPLOYEMENT_IP,
       ref  : "origin/master",
       repo : "git@github.com:mycshq/reviewly.git",
-      path : "/var/www/production",
+      path : "/home/deploy",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
     }
   }
