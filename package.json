@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Nicolas Ritouet <nicolas@mycs.com>",
-  "private": false,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "node": ">=7"
   },
@@ -13,21 +12,23 @@
     "start": "node --harmony-async-await src/index.js",
     "watch": "nodemon --harmony-async-await src/index.js",
     "dev": "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
-    "test": "mocha --harmony-async-await --reporter spec tests/*.js"
+    "test": "npm run lint && mocha --harmony-async-await --reporter spec tests/*.js",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "debug": "^2.3.2",
     "koa": "next",
     "koa-logger": "next",
     "koa-send": "3",
     "pm2": "^2.1.4"
   },
   "devDependencies": {
+    "eslint": "^3.9.1",
     "mocha": "^3.1.2",
     "nodejs-dashboard": "^0.1.2",
     "nodemon": "^1.11.0",
     "pm2": "^2.1.4",
     "should": "^11.1.1",
-    "sinon": "^1.17.6",
     "supertest": "^2.0.1"
   }
 }

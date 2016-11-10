@@ -5,14 +5,14 @@ module.exports = {
    */
   apps : [
     {
-      name      : "reviewly",
-      script    : "src/index.js",
-      node_args : "--harmony-async-await",
+      name      : 'reviewly',
+      script    : 'src/index.js',
+      node_args : '--harmony-async-await',
       env: {
-        COMMON_VARIABLE: "true"
+        COMMON_VARIABLE: 'true'
       },
       env_production : {
-        NODE_ENV: "production"
+        NODE_ENV: 'production'
       }
     }
   ],
@@ -23,12 +23,12 @@ module.exports = {
    */
   deploy : {
     production : {
-      user : "deploy",
+      user : 'deploy',
       host : process.env.FEATURE_DEPLOYEMENT_IP,
-      ref  : "origin/master",
-      repo : "https://github.com/mycsHQ/reviewly.git",
-      path : "/home/deploy",
-      "post-deploy" : "npm install && node_modules/.bin/pm2 startOrRestart ecosystem.config.js --env production"
+      ref  : 'origin/master',
+      repo : 'https://github.com/mycsHQ/reviewly.git',
+      path : '/home/deploy',
+      'post-deploy' : 'npm install && node_modules/.bin/pm2 startOrRestart ecosystem.config.js --env production'
     }
   }
-}
+};

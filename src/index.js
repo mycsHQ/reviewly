@@ -3,27 +3,30 @@ const os = require('os');
 const Koa = require('koa');
 const send = require('koa-send');
 const logger = require('koa-logger');
+const debug = require('debug')('reviewly');
 
 // Internal modules
 const config = require('./config')();
 
 // Setup the app
 const app = new Koa();
+const rootFolder = process.env.ROOT_FOLDER || os.homedir();
 
 // Add middleware
 app.use(logger());
 
 // Serve folder based on subdomain
-app.use(async (ctx, next) => {
+app.use(async (ctx) => {
   const subdomains = ctx.req.headers.host.split('.');
   const featureName = subdomains[0];
   const path = ctx.path === '/' ? 'index.html' : ctx.path;
+  debug('rootFolder', rootFolder, 'featureName', featureName, 'path', path);
   // TODO NRT: Verify the resource exists, if not, return index.html
-  await send(ctx, path, { root: `${ os.homedir() }/${ featureName }` });
+  await send(ctx, path, { root: `${ rootFolder }/${ featureName }` });
 });
 
 // Start server
-app.listen(config.port, () => console.log(`Server started ${ config.port }`));
+app.listen(config.port, () => /* eslint-disable no-console */ console.log(`Server started ${ config.port }`) /* eslint-enable no-console */);
 
 // Export server to allow testing
 module.exports = app;
