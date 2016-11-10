@@ -13,10 +13,11 @@ describe('Reviewly', () => {
       .expect(200)
       .expect('Hello World!', done);
   });
-  it('should return 404 if file not found', (done) => {
+  it('should return index.html content', (done) => {
     request
       .get('/file-does-not-exist.html')
-      .set('host', 'stub.de.hello.dev')
-      .expect(404, done);
+      .set('host', 'de.stub.hello.dev')
+      .expect(200)
+      .expect('Hello World!', done);
   });
 });

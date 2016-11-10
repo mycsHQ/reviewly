@@ -9,7 +9,8 @@ module.exports = {
       script    : 'src/index.js',
       node_args : '--harmony-async-await',
       env: {
-        COMMON_VARIABLE: 'true'
+        COMMON_VARIABLE: 'true',
+        DEBUG: '*'
       },
       env_production : {
         NODE_ENV: 'production'

@@ -1,5 +1,6 @@
 // External dependencies
 const os = require('os');
+const fs = require('fs');
 const Koa = require('koa');
 const send = require('koa-send');
 const logger = require('koa-logger');
@@ -21,9 +22,12 @@ app.use(logger());
 app.use(async (ctx) => {
   const subdomains = ctx.req.headers.host.split('.');
   const featureName = subdomains[1];
-  const path = ctx.path === '/' ? 'index.html' : ctx.path;
-  debug('rootFolder', rootFolder, 'featureName', featureName, 'path', path);
-  // TODO NRT: Verify the resource exists, if not, return index.html
+  let path = ctx.path === '/' ? '/index.html' : ctx.path;
+  debug('file requested', `${ rootFolder }/${ featureName }${ path }`);
+  if (!fs.existsSync(`${ rootFolder }/${ featureName }${ path }`)) {
+    path = 'index.html';
+  }
+  debug('file served', `${ rootFolder }/${ featureName }${ path }`);
   await send(ctx, path, { root: `${ rootFolder }/${ featureName }` });
 });
 
