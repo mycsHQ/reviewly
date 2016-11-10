@@ -1,6 +1,12 @@
+
+const debug = require('debug')('reviewly:config');
 const config = {
   dev: {
     environment: 'dev',
+    port: process.env.PORT || 3000
+  },
+  test: {
+    environment: 'test',
     port: process.env.PORT || 3000
   },
   staging: {
@@ -13,4 +19,7 @@ const config = {
   }
 };
 
-module.exports = (environment) => config[environment || process.env.NODE_ENV || 'dev'];
+module.exports = (environment) => {
+  debug('config loaded for environment', environment || process.env.NODE_ENV || 'dev');
+  return config[environment || process.env.NODE_ENV || 'dev'];
+};

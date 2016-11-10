@@ -8,7 +8,7 @@ const debug = require('debug')('reviewly');
 
 // Internal modules
 const config = require('./config')();
-assert(!!config);
+assert(!!config, `config needs to be defined for ${ process.env.NODE_ENV }`);
 
 // Setup the app
 const app = new Koa();
@@ -28,7 +28,7 @@ app.use(async (ctx) => {
 });
 
 // Start server
-app.listen(config.port, () => /* eslint-disable no-console */ console.log(`Server started ${ config.port }`) /* eslint-enable no-console */);
+app.listen(config.port, () => /* eslint-disable no-console */ console.log(`Reviewly successfuly started on port ${ config.port } with NODE_ENV ${ process.env.NODE_ENV }`) /* eslint-enable no-console */);
 
 // Export server to allow testing
 module.exports = app;
