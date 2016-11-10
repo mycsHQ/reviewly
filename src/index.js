@@ -3,10 +3,12 @@ const os = require('os');
 const Koa = require('koa');
 const send = require('koa-send');
 const logger = require('koa-logger');
+const assert = require('assert');
 const debug = require('debug')('reviewly');
 
 // Internal modules
 const config = require('./config')();
+assert(!!config);
 
 // Setup the app
 const app = new Koa();
