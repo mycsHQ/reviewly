@@ -20,7 +20,7 @@ app.use(logger());
 // Serve folder based on subdomain
 app.use(async (ctx) => {
   const subdomains = ctx.req.headers.host.split('.');
-  const featureName = subdomains[0];
+  const featureName = subdomains[1];
   const path = ctx.path === '/' ? 'index.html' : ctx.path;
   debug('rootFolder', rootFolder, 'featureName', featureName, 'path', path);
   // TODO NRT: Verify the resource exists, if not, return index.html
