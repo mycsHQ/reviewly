@@ -9,7 +9,7 @@ describe('Reviewly', () => {
   it('should return content of index.html (Hello World!)', (done) => {
     request
       .get('/')
-      .set('host', 'stub.de.mycs.dev')
+      .set('host', 'de.stub.mycs.dev')
       .expect(200)
       .expect('Hello World!', done);
   });
