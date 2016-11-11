@@ -1,21 +1,27 @@
-
+// External dependencies
+const os = require('os');
 const debug = require('debug')('reviewly:config');
+
 const config = {
   dev: {
     environment: 'dev',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3000,
+    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
   },
   test: {
     environment: 'test',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3000,
+    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
   },
   staging: {
     environment: 'staging',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3000,
+    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
   },
   production: {
     environment: 'production',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3000,
+    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
   }
 };
 
