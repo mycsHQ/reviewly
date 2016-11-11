@@ -6,22 +6,26 @@ const config = {
   dev: {
     environment: 'dev',
     port: process.env.PORT || 3000,
-    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
+    rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    featureFolder: 'features'
   },
   test: {
     environment: 'test',
     port: process.env.PORT || 3000,
-    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
+    rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    featureFolder: 'features'
   },
   staging: {
     environment: 'staging',
     port: process.env.PORT || 3000,
-    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
+    rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    featureFolder: 'features'
   },
   production: {
     environment: 'production',
     port: process.env.PORT || 3000,
-    rootFolder: process.env.ROOT_FOLDER || `${ os.homedir() }`
+    rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    featureFolder: 'features'
   }
 };
 

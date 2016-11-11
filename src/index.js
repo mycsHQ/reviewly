@@ -1,5 +1,6 @@
 // External dependencies
 // const os = require('os');
+const path = require('path');
 const fs = require('fs');
 const Koa = require('koa');
 const send = require('koa-send');
@@ -15,6 +16,7 @@ assert(!!config, `config needs to be defined for ${ process.env.NODE_ENV }`);
 // Setup the app
 const app = new Koa();
 const rootFolder = config.rootFolder;
+const featureFolder = config.featureFolder;
 
 // Add middleware
 app.use(logger());
@@ -23,20 +25,20 @@ app.use(logger());
 app.use(async (ctx) => {
   const subdomains = ctx.req.headers.host.split('.');
   const featureName = subdomains[1];
-  let path = ctx.path === '/' ? '/index.html' : ctx.path;
-  debug('file requested', `${ rootFolder }/${ featureName }${ path }`);
+  let filePath = ctx.path === '/' ? 'index.html' : ctx.path;
+  debug('file requested', path.join(rootFolder, featureFolder, featureName, filePath));
   /*
   if (!fs.existsSync(`${ rootFolder }/${ featureName }`)) {
     const folderList = utils.getDirectories(rootFolder);
     console.log(folderList);
   } else 
   */
-  if (!fs.existsSync(`${ rootFolder }/${ featureName }${ path }`)) {
-    debug(`${ rootFolder }/${ featureName }${ path } doesn't exits, we are using index.html`);
-    path = '/index.html';
+  if (!fs.existsSync(path.join(rootFolder, featureFolder, featureName, filePath))) {
+    debug(path.join(rootFolder, featureFolder, featureName, filePath), ` doesn't exits, we are using index.html`);
+    filePath = 'index.html';
   }
-  debug('file served', `${ rootFolder }/${ featureName }${ path }`);
-  await send(ctx, path, { root: `${ rootFolder }/${ featureName }` });
+  debug('file served', path.join(rootFolder, featureFolder, featureName, filePath));
+  await send(ctx, filePath, { root: path.join(rootFolder, featureFolder, featureName) });
 });
 
 // Start server
