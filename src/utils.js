@@ -7,7 +7,10 @@ const getDirectories = (srcpath) =>
   fs.readdirSync(srcpath).filter((file) =>
     fs.statSync(path.join(srcpath, file)).isDirectory());
 
+const buildUrl = (lang, feature, domain = 'mycs', tld = 'wtf') =>
+`http://${lang}.${feature}.${domain}.${tld}`;
 
 module.exports = {
-  getDirectories: getDirectories
+  getDirectories: getDirectories,
+  buildUrl: buildUrl
 }

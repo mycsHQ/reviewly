@@ -30,6 +30,8 @@ const config = {
 };
 
 module.exports = (environment) => {
-  debug('config loaded for environment', environment || process.env.NODE_ENV || 'dev');
-  return config[environment || process.env.NODE_ENV || 'dev'];
+  // Sanitize environment
+  if (!process.env.NODE_ENV || process.env.NODE_ENV && Object.keys(config).indexOf(process.env.NODE_ENV) === -1) { process.env.NODE_ENV = 'dev'; }
+  debug('config loaded for environment', environment || process.env.NODE_ENV);
+  return config[environment || process.env.NODE_ENV];
 };

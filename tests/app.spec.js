@@ -20,4 +20,11 @@ describe('Reviewly', () => {
       .expect(200)
       .expect('Hello World!', done);
   });
+  it('should return list of existing features if feature not found', (done) => {
+    request
+      .get('/')
+      .set('host', 'de.EXIST-ME-NOT.hello.dev')
+      .expect(200)
+      .expect('This feature-branch was not found, here\'s what is already deployed on this server<br><a href="http://de.stub.hello.dev">stub</a><br>', done);
+  });
 });
