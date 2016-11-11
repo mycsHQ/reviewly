@@ -30,6 +30,7 @@ app.use(async (ctx) => {
 
   if (!fs.existsSync(path.join(rootFolder, featureFolder, featureName))) {
     const folderList = utils.getDirectories(path.join(rootFolder, featureFolder));
+    debug(path.join(rootFolder, featureFolder), ` doesn't exits, we are listing all features`, folderList);
     let body = `This feature-branch was not found, here's what is already deployed on this server<br>`;
     body += folderList.map((folder) => `<a href="${utils.buildUrl(lang, folder, domain, tld)}">${folder}</a><br>`).join('');
     ctx.body = body;
