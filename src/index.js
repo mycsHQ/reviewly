@@ -22,8 +22,8 @@ app.use(logger());
 
 // Serve folder based on subdomain
 app.use(async (ctx) => {
-  const subdomains = ctx.req.headers.host.split('.'),
-        [ lang, featureName, domain, tld ] = subdomains;
+  const host = ctx.req.headers.host.split('.'),
+        featureName = host[1];
 
   let filePath = ctx.path === '/' ? 'index.html' : ctx.path;
   debug('file requested', path.join(rootFolder, featureFolder, featureName, filePath));
@@ -32,7 +32,7 @@ app.use(async (ctx) => {
     const folderList = utils.getDirectories(path.join(rootFolder, featureFolder));
     debug(path.join(rootFolder, featureFolder), ` doesn't exits, we are listing all features`, folderList);
     let body = `This feature-branch was not found, here's what is already deployed on this server<br>`;
-    body += folderList.map((folder) => `<a href="${utils.buildUrl(lang, folder, domain, tld)}">${folder}</a><br>`).join('');
+    body += folderList.map((folder) => `<a href="${ utils.buildUrl(host, folder) }">${folder}</a><br>`).join('');
     ctx.body = body;
     ctx.type = 'text/html; charset=utf-8';
     return ctx;
