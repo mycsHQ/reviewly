@@ -18,7 +18,9 @@
   "dependencies": {
     "debug": "^2.3.2",
     "koa": "next",
+    "koa-bodyparser": "^3.2.0",
     "koa-logger": "next",
+    "koa-router": "^7.0.1",
     "koa-send": "3",
     "pm2": "^2.1.4"
   },
