@@ -1,6 +1,6 @@
 // External dependencies
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 
 const debug = require('debug')('reviewly');
 
@@ -21,7 +21,7 @@ const webhook = async (ctx) => {
   const fullPath = path.join(rootFolder, featureFolder, branchName);
   if (fs.existsSync(fullPath)) {
     debug(`${ fullPath } seems to exist, will try to delete`);
-    fs.rmdirSync(fullPath);
+    fs.removeSync(fullPath);
     ctx.body = `${ branchName } has been deleted`;
   } else {
     ctx.body = `${ branchName } not found`;

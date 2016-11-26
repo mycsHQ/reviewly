@@ -1,6 +1,6 @@
 process.env.ROOT_FOLDER = './tests';
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const apiUnderTest = require('../src');
 const supertest = require('supertest');
@@ -12,7 +12,10 @@ const fullPath = path.join(process.env.ROOT_FOLDER, 'features', branchName);
 describe('Reviewly - Webhook', () => {
 
   it('should get the branch from body and delete the folder', (done) => {
-    if (!fs.existsSync(fullPath)) fs.mkdirSync(fullPath);
+    if (!fs.existsSync(fullPath)) {
+      fs.mkdirSync(fullPath);
+      fs.writeFileSync(path.join(fullPath, 'index.html'), 'hello world');
+    }
     request
       .post('/webhook')
       .set('host', 'mycs.dev')
