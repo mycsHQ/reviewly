@@ -1,10 +1,19 @@
 process.env.ROOT_FOLDER = './tests';
 
+/**
+ * Module dependencies.
+ */
 const apiUnderTest = require('../src');
 const supertest = require('supertest');
 
+/**
+ * Setup supertest with our API
+ */
 const request = supertest.agent(apiUnderTest.listen());
 
+/**
+ * Tests for the Wildcard (/*) route
+ */
 describe('Reviewly', () => {
   it('should return content of index.html (Hello World!)', (done) => {
     request

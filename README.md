@@ -4,6 +4,12 @@
 
 > Serve the content of a folder based on a subdomain (we use it to review our feature branch, hence the name)
 
+## Description
+
+This app will serve the content of a folder based on the subdomain.  
+eg. `de.my-branch.mydomain.tld` will serve the content of the folder `$HOME/features/my-branch`.
+
+This app also contains a webhook to delete a folder when a branch is deleted.
 
 ## Getting started
 

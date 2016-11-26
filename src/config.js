@@ -1,7 +1,13 @@
-// External dependencies
+/**
+ * Module dependencies.
+ */
 const os = require('os');
 const debug = require('debug')('reviewly:config');
 
+/**
+ * Config object
+ * @public
+ */
 const config = {
   dev: {
     environment: 'dev',
@@ -29,9 +35,27 @@ const config = {
   }
 };
 
-module.exports = (environment) => {
+/**
+ * Pseudo-factory to retrieve a config object based on the environment
+ * 
+ * @param {string} environment
+ * @return {object} config object
+ * @public
+ */
+const configFactory = (environment) => {
   // Sanitize environment
-  if (!process.env.NODE_ENV || process.env.NODE_ENV && Object.keys(config).indexOf(process.env.NODE_ENV) === -1) { process.env.NODE_ENV = 'dev'; }
+  if (!process.env.NODE_ENV
+      || process.env.NODE_ENV
+      && Object.keys(config).indexOf(process.env.NODE_ENV) === -1) {
+    process.env.NODE_ENV = 'dev';
+  }
+
   debug('config loaded for environment', environment || process.env.NODE_ENV);
   return config[environment || process.env.NODE_ENV];
-};
+}
+
+/**
+ * Module exports.
+ * @public
+ */
+module.exports = configFactory;
