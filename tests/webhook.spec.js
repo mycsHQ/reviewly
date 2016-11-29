@@ -40,6 +40,29 @@ describe('Reviewly - Webhook', () => {
       });
   });
 
+  it('should get the branch from body and delete the folder even when branch name is given in uppercase', (done) => {
+    const branchName = 'branchNameToDelete'.toLowerCase();
+    const fullPath = path.join(process.env.ROOT_FOLDER, 'features', branchName);
+
+    if (!fs.existsSync(fullPath)) {
+      fs.mkdirSync(fullPath);
+      fs.writeFileSync(path.join(fullPath, 'index.html'), 'hello world');
+    }
+
+    request
+      .post('/webhook')
+      .set('host', 'mycs.dev')
+      .send({
+        ref: branchName.toUpperCase()
+      })
+      .expect(200, `${ branchName.toUpperCase() } has been deleted`)
+      .end((err) => {
+        if (err) return done(err);
+        if (fs.existsSync(fullPath)) throw new Error('Folder should be deleted');
+        done();
+      });
+  });
+
   it('should not delete subdirectory', (done) => {
     const branchNameWithUpDir = '../../../home/root';
 
