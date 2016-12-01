@@ -18,7 +18,7 @@ const request = supertest.agent(apiUnderTest.listen());
 describe('Reviewly - Webhook', () => {
 
   it('should get the branch from body and delete the folder', (done) => {
-    const branchName = 'branchNameToDelete';
+    const branchName = 'branch-name-to-delete';
     const fullPath = path.join(process.env.ROOT_FOLDER, 'features', branchName);
 
     if (!fs.existsSync(fullPath)) {
