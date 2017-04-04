@@ -45,6 +45,12 @@ const wildcard = async (ctx) => {
   } else if (!fs.existsSync(path.join(rootFolder, featureFolder, featureName, filePath))) {
     debug(path.join(rootFolder, featureFolder, featureName, filePath), ` doesn't exits, we are using index.html`);
 
+    // Stuff that can be ng-included
+    if (/(svg|html)$/.test(filePath)) {
+      ctx.body = 'Not found';
+      return ctx;
+    }
+
     filePath = 'index.html';
   }
 
