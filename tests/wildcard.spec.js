@@ -27,7 +27,7 @@ describe('Reviewly', () => {
       .get('/file-does-not-exist.html')
       .set('host', 'de.stub.hello.dev')
       .expect(200)
-      .expect('Hello World!', done);
+      .expect('Not found', done);
   });
   it('should return list of existing features if feature not found', (done) => {
     request
