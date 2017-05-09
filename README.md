@@ -39,11 +39,11 @@ yarn test
 - mocha, should and supertest for testing the server
 - eslint for linting the codebase
 
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
 
 ## Continuous deployment
 
 Thanks to pm2 deploy, circleci will automatically deployd a new release on a given server.
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
