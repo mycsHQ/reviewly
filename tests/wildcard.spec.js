@@ -22,6 +22,13 @@ describe('Reviewly', () => {
       .expect(200)
       .expect('Hello World!', done);
   });
+  it('should ignore the case of the feature name', (done) => {
+    request
+      .get('/')
+      .set('host', 'de.test_mycs-123.mycs.dev')
+      .expect(200)
+      .expect('Hello World!', done);
+  });
   it('should return index.html content', (done) => {
     request
       .get('/file-does-not-exist.html')
@@ -34,6 +41,6 @@ describe('Reviewly', () => {
       .get('/')
       .set('host', 'de.EXIST-ME-NOT.hello.dev')
       .expect(200)
-      .expect('This feature-branch was not found, here\'s what is already deployed on this server<br><a href="http://de.stub.hello.dev">stub</a><br>', done);
+      .expect('This feature-branch was not found, here\'s what is already deployed on this server<br><a href="http://de.stub.hello.dev">stub</a><br><a href="http://de.test_MYCS-123.hello.dev">test_MYCS-123</a><br>', done);
   });
 });
