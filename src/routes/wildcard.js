@@ -27,21 +27,22 @@ const featureFolder = config.featureFolder;
  */
 const wildcard = async (ctx) => {
   const host = ctx.req.headers.host.split('.'),
-        featureName = host[1];
+        featureNameLowCase = host[1].toLowerCase();
+
+  const folderList = utils.getDirectories(path.join(rootFolder, featureFolder));
+  const featureName = folderList.find(item => item.toLowerCase() === featureNameLowCase) || featureNameLowCase;
 
   let filePath = ctx.path === '/' ? 'index.html' : ctx.path;
   debug('file requested', path.join(rootFolder, featureFolder, featureName, filePath));
 
   if (!fs.existsSync(path.join(rootFolder, featureFolder, featureName))) {
-    const folderList = utils.getDirectories(path.join(rootFolder, featureFolder));
-
     ctx.type = 'text/html; charset=utf-8';
 
     ctx.body = `This feature-branch was not found, here's what is already deployed on this server<br>`;
     ctx.body += folderList.map((folder) => `<a href="${ utils.buildUrl(host, folder) }">${folder}</a><br>`).join('');
 
     return ctx;
-    
+
   } else if (!fs.existsSync(path.join(rootFolder, featureFolder, featureName, filePath))) {
     debug(path.join(rootFolder, featureFolder, featureName, filePath), ` doesn't exits, we are using index.html`);
 
