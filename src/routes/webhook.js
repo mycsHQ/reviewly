@@ -36,7 +36,7 @@ const webhook = async (ctx) => {
     return ctx;
   }
 
-  const fullPath = path.join(rootFolder, featureFolder, branchName.toLowerCase());
+  const fullPath = path.join(rootFolder, featureFolder, branchName);
   if (fs.existsSync(fullPath) && !upPathRegex.test(fullPath)) {
     debug(`${ fullPath } seems to exist, will try to delete`);
     fs.removeSync(fullPath);
