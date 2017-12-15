@@ -2,6 +2,7 @@ const path = require('path');
 const rq = require('../utils/requestGh');
 const pug = require('pug');
 const _ = require('lodash');
+const debug = require('debug')('reviewly');
 
 /**
  * Internal dependencies.
@@ -49,7 +50,7 @@ const home = async ctx => {
 
     ctx.body = tmpl;
   } catch (e) {
-    console.error(e);
+    debug('error: ', e);
   }
 };
 
