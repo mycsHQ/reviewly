@@ -1,4 +1,5 @@
 const { GraphQLClient } = require('graphql-request');
+const debug = require('debug')('reviewly');
 
 const client = new GraphQLClient('https://api.github.com/graphql', {
   headers: {
@@ -33,5 +34,5 @@ const query = `
 `;
 
 module.exports = client.request(query).catch(e => {
-  console.error('api request error', e);
+  debug('api request error', e);
 });
