@@ -1,8 +1,8 @@
-const { GraphQLClient } = require("graphql-request");
+const { GraphQLClient } = require('graphql-request');
 
-const client = new GraphQLClient("https://api.github.com/graphql", {
+const client = new GraphQLClient('https://api.github.com/graphql', {
   headers: {
-    Authorization: "Bearer 32af527c94a3c39854ed95164281cd1cd35bb32a"
+    Authorization: 'Bearer 32af527c94a3c39854ed95164281cd1cd35bb32a'
   }
 });
 
@@ -33,5 +33,5 @@ const query = `
 `;
 
 module.exports = client.request(query).catch(e => {
-  console.error("api request error", e);
+  console.error('api request error', e);
 });

@@ -1,13 +1,13 @@
-const path = require("path");
-const rq = require("../utils/requestGh");
-const pug = require("pug");
-const _ = require("lodash");
+const path = require('path');
+const rq = require('../utils/requestGh');
+const pug = require('pug');
+const _ = require('lodash');
 
 /**
  * Internal dependencies.
  */
-const config = require("../config")();
-const utils = require("../utils");
+const config = require('../config')();
+const utils = require('../utils');
 
 /**
  * Default values.
@@ -15,12 +15,12 @@ const utils = require("../utils");
 const rootFolder = config.rootFolder;
 const featureFolder = config.featureFolder;
 const template = pug.compileFile(
-  path.join(rootFolder, "src", "app", "index.pug")
+  path.join(rootFolder, 'src', 'app', 'index.pug')
 );
 
 const home = async ctx => {
-  ctx.type = "text/html; charset=utf-8";
-  const host = ctx.req.headers.host.split(".");
+  ctx.type = 'text/html; charset=utf-8';
+  const host = ctx.req.headers.host.split('.');
   const folderList = utils.getDirectories(path.join(rootFolder, featureFolder));
 
   try {
@@ -28,15 +28,16 @@ const home = async ctx => {
     const pulls = ghData.repository.pullRequests.edges;
     const branchData = folderList.map(folder => {
       const pullData = pulls.find(pull => pull.node.headRefName === folder);
+      const created = _.get(pullData, 'node.createdAt');
 
       const ret = {
         branch: folder,
         branchUrl: utils.buildUrl(host, folder),
-        avatarUrl: _.get(pullData, "node.author.avatarUrl"),
-        author: _.get(pullData, "node.author.login"),
-        pullUrl: _.get(pullData, "node.url"),
-        createdAt: _.get(pullData, "node.createdAt"),
-        title: _.get(pullData, "node.title")
+        avatarUrl: _.get(pullData, 'node.author.avatarUrl'),
+        author: _.get(pullData, 'node.author.login'),
+        pullUrl: _.get(pullData, 'node.url'),
+        createdAt: created ? new Date(created).toLocaleString() : '',
+        title: _.get(pullData, 'node.title')
       };
 
       return ret;
