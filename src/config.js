@@ -9,6 +9,12 @@ const debug = require('debug')('reviewly:config');
  * @public
  */
 const config = {
+  local: {
+    environment: 'local',
+    port: process.env.PORT || 3000,
+    rootFolder: process.env.ROOT_FOLDER,
+    featureFolder: 'features'
+  },
   dev: {
     environment: 'dev',
     port: process.env.PORT || 3000,
