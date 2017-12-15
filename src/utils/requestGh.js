@@ -3,7 +3,7 @@ const debug = require('debug')('reviewly');
 
 const client = new GraphQLClient('https://api.github.com/graphql', {
   headers: {
-    Authorization: 'Bearer 32af527c94a3c39854ed95164281cd1cd35bb32a'
+    Authorization: 'Bearer ' + process.env.GITHUB_TOKEN
   }
 });
 

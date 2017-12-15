@@ -29,8 +29,9 @@ module.exports = {
       ref: 'origin/github-api',
       repo: 'https://github.com/mycsHQ/reviewly.git',
       path: '/home/deploy',
-      'post-deploy':
-        'npm install && node_modules/.bin/pm2 startOrRestart ecosystem.config.js --env production'
+      'post-deploy': `export GITHUB_TOKEN=${
+        process.env.GITHUB_TOKEN
+      } && npm install && node_modules/.bin/pm2 startOrRestart ecosystem.config.js --env production`
     }
   }
 };
