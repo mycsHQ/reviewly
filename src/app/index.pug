@@ -1,17 +1,22 @@
 <!doctype html>
 title Features
 style(type="text/css").
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, sans-serif;
+  }
   a {
     color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
   }
   a:hover {
-    text-decoration: none;
+    border-bottom-width: 2px;
   }
   a:visited {
-    color: #555;
+    border-bottom-color: #555;
   }
   .item {
-    padding: 0.5rem 0 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem;
     display: flex;
     justify-content: space-between;
   }
@@ -20,16 +25,18 @@ style(type="text/css").
   }
   .pull, .date {
     font-size: 12px;
+    display: inline-block;
   }
-  .date {
-    margin-left: 1rem;
+  .pull {
+    margin-right: 1rem;
   }
   .branchLink {
     height: 30px;
     line-height: 30px;
+    margin-right: 1rem;
   }
   .container {
-    max-width: 500px;
+    max-width: 700px;
     margin: 0 auto;
   }
   .logo {
@@ -37,6 +44,16 @@ style(type="text/css").
     max-height: 50px;
     margin-bottom: 1rem;
   }
+  summary {
+    cursor: pointer;
+  }
+  summary:focus {
+    outline: 0;
+  }
+  .pullDetails {
+    font-size: 14px;
+  }
+
 
 .container
   <svg class="logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 208.5 61.7" enable-background="new 0 0 208.5 61.7" xml:space="preserve"><g><polygon fill="#323031" points="50,6.1 34.5,45.1 19,6.1 16.4,6.1 5,55.3 7.1,55.3 16,17.8 31.4,55.6 33,55.6 47.8,17.9 56.2,55.3 63.4,55.3 52.2,6.1 "></polygon><g><path fill="#323031" d="M108.2,31c0-14.7,11.9-26,27.6-26c11.4,0,20,4.8,24.3,13.7l-5.5,3.8c-0.8-8.3-9-15.5-17.5-15.5 c-13,0-21,9.1-21,23.8c0,14.5,8.1,23.8,21,23.8c9.7,0,18.6-6.6,19.8-14.7l2.8,1.6c-3.6,9.1-13,15.1-23.8,15.1 C120,56.6,108.2,45.8,108.2,31"></path><path fill="#323031" d="M169.6,46l4.8-3.2c0.3,6.1,6.3,11.5,13.1,11.5s11-3.6,11-9.2c0-4.7-3-7.5-12.6-11.5c-9.9-4.2-14-8.5-14-15 c0-7.3,6.6-12.9,15-12.9c7.2,0,13.7,3.9,15,9.1l-4.7,3.5c-0.1-6-5.1-10.7-11.5-10.7c-5.5,0-9.3,3.5-9.3,8.4s2.1,6.8,12.4,11.3 c11.1,4.9,14.7,8.4,14.7,14.6c0,8.2-7.3,14.4-16.9,14.4C179.5,56.2,171.8,51.6,169.6,46"></path></g><polygon fill="#323031" points="89.9,31.2 89.9,55.3 83.2,55.3 83.2,33.5 68.2,6.4 76.7,6.4 89.5,30.4 "></polygon><g><path fill="#323031" d="M97.3,10.2c0.9,1.6,1.4,3.2,1.6,4.9l0,0l4.9-8.7h-10l0,0C95.2,7.4,96.4,8.6,97.3,10.2"></path></g></g></svg>
@@ -46,7 +63,8 @@ style(type="text/css").
         a.branchLink(href=item.branchUrl)
           strong #{item.branch}
         i.date(title="created") #{item.createdAt}
-        .pull
-          | PR: 
-          a(href=item.pullUrl) #{item.title}
+        details
+          summary
+            a.pull(href=item.pullUrl) #{item.title}
+          .pullDetails !{item.bodyHTML}
       img(src=item.avatarUrl, height=60, title=item.author)

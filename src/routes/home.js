@@ -28,7 +28,10 @@ const home = async ctx => {
     const ghData = await rq;
     const pulls = ghData.repository.pullRequests.edges;
     const branchData = folderList.map(folder => {
-      const pullData = pulls.find(pull => pull.node.headRefName === folder);
+      const pullData = pulls.find(
+        pull => pull.node.headRefName.toLowerCase() === folder.toLowerCase()
+      );
+
       const created = _.get(pullData, 'node.createdAt');
 
       const ret = {
@@ -38,7 +41,8 @@ const home = async ctx => {
         author: _.get(pullData, 'node.author.login'),
         pullUrl: _.get(pullData, 'node.url'),
         createdAt: created ? new Date(created).toLocaleString() : '',
-        title: _.get(pullData, 'node.title')
+        title: _.get(pullData, 'node.title'),
+        bodyHTML: _.get(pullData, 'node.bodyHTML')
       };
 
       return ret;

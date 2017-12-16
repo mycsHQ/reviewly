@@ -22,6 +22,14 @@ const query = `
           title
           url
           createdAt
+          bodyHTML
+          comments(first: 1) {
+            edges {
+              node {
+                bodyHTML
+              }
+            }
+          }
           author {
             login
             avatarUrl
