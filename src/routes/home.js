@@ -16,7 +16,7 @@ const utils = require('../utils');
 const rootFolder = config.rootFolder;
 const featureFolder = config.featureFolder;
 const template = pug.compileFile(
-  path.join(rootFolder, 'src', 'app', 'index.pug')
+  path.join(rootFolder, 'source', 'src', 'app', 'index.pug')
 );
 
 const home = async ctx => {
@@ -47,6 +47,9 @@ const home = async ctx => {
 
       return ret;
     });
+
+    // folders without a pull request are pushed to the bottom
+    branchData.sort((a, b) => (a.pullUrl && !b.pullUrl ? -1 : 1));
 
     const tmpl = template({
       items: branchData

@@ -63,8 +63,10 @@ style(type="text/css").
         a.branchLink(href=item.branchUrl)
           strong #{item.branch}
         i.date(title="created") #{item.createdAt}
-        details
-          summary
-            a.pull(href=item.pullUrl) #{item.title}
-          .pullDetails !{item.bodyHTML}
-      img(src=item.avatarUrl, height=60, title=item.author)
+        if item.pullUrl || item.title || item.bodyHTML
+          details
+            summary
+              a.pull(href=item.pullUrl) #{item.title}
+            .pullDetails !{item.bodyHTML}
+      if item.avatarUrl
+        img(src=item.avatarUrl, height=60, title=item.author)
