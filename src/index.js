@@ -12,6 +12,7 @@ const router = require('koa-router')();
 const config = require('./config')();
 const wildcard = require('./routes/wildcard');
 const webhook = require('./routes/webhook');
+const robots = require('./routes/robots');
 
 /**
  * Setup Koa app
@@ -30,7 +31,8 @@ app.use(router.allowedMethods());
  * Assign routes
  */
 router.post('/webhook', webhook);
-router.get('*', wildcard)
+router.get('/robots.txt', robots);
+router.get('*', wildcard);
 
 /**
  * Start the server
