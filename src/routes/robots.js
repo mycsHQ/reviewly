@@ -1,5 +1,5 @@
 module.exports = async ctx => {
-  ctx.type = 'text/html; charset=utf-8';
+  ctx.type = 'text/plain; charset=utf-8';
   ctx.body = 'User-agent: *\nDisallow: /';
   return ctx;
 };
