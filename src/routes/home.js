@@ -42,17 +42,24 @@ const home = async ctx => {
         pullUrl: _.get(pullData, 'node.url'),
         createdAt: created ? new Date(created).toLocaleString() : '',
         title: _.get(pullData, 'node.title'),
-        bodyHTML: _.get(pullData, 'node.bodyHTML')
+        bodyHTML: _.get(pullData, 'node.bodyHTML'),
+        created
       };
 
       return ret;
     });
 
     // folders without a pull request are pushed to the bottom
-    branchData.sort((a, b) => (a.pullUrl && !b.pullUrl ? -1 : 1));
+    branchData.sort((a, b) => {
+      if (!a.created || !b.created) return -1;
+      return (new Date(b.created)).getTime() - (new Date(a.created)).getTime();
+    });
+
+    const withUrl = branchData.filter(bd => bd.pullUrl)
+    const withoutUrl = branchData.filter(bd => !bd.pullUrl)
 
     const tmpl = template({
-      items: branchData
+      items: [...withUrl, ...withoutUrl]
     });
 
     ctx.body = tmpl;

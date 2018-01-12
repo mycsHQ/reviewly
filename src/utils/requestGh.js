@@ -14,7 +14,7 @@ const query = `
     description
     diskUsage
     createdAt
-    pullRequests(first: 20, states: [OPEN]) {
+    pullRequests(first: 60, states: [OPEN]) {
       edges {
         node {
           id
