@@ -15,10 +15,10 @@ const utils = require('../utils');
  */
 const rootFolder = config.rootFolder;
 const featureFolder = config.featureFolder;
+const sourceFolder = config.sourceFolder;
 const template = pug.compileFile(
-  path.join(rootFolder, 'source', 'src', 'app', 'index.pug')
+  path.join(rootFolder, sourceFolder, 'app', 'index.pug')
 );
-
 const home = async ctx => {
   ctx.type = 'text/html; charset=utf-8';
   const host = ctx.req.headers.host.split('.');

@@ -12,31 +12,36 @@ const config = {
   local: {
     environment: 'local',
     port: process.env.PORT || 3000,
-    rootFolder: process.env.ROOT_FOLDER,
+    rootFolder: process.env.ROOT_FOLDER || process.cwd(),
+    sourceFolder: 'reviewly/src',
     featureFolder: 'features'
   },
   dev: {
     environment: 'dev',
     port: process.env.PORT || 3000,
     rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    sourceFolder: 'source/src',
     featureFolder: 'features'
   },
   test: {
     environment: 'test',
     port: process.env.PORT || 3000,
     rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    sourceFolder: 'source/src',
     featureFolder: 'features'
   },
   staging: {
     environment: 'staging',
     port: process.env.PORT || 3000,
     rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    sourceFolder: 'source/src',
     featureFolder: 'features'
   },
   production: {
     environment: 'production',
     port: process.env.PORT || 3000,
     rootFolder: process.env.ROOT_FOLDER || os.homedir(),
+    sourceFolder: 'source/src',
     featureFolder: 'features'
   }
 };

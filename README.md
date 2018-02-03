@@ -20,6 +20,11 @@ yarn install
 yarn run start
 ```
 
+Put `reviewly/` in another folder, e. g. `reviewly-wrapper/`.
+Create `features/` folder inside `reviewly-wrapper/`
+Run: `ROOT_FOLDER=~/mycs/reviewly-wrapper GITHUB_TOKEN=<github token> NODE_ENV=local npm start`
+(you can find the github token in circleci)
+
 ### Prerequisites
 
 Since we are using async/await with koa@2, this app needs to run on >= Node7.
