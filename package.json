@@ -14,7 +14,7 @@
     "watch": "nodemon --harmony-async-await src/index.js",
     "dev":
       "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
-    "test": "npm run lint",
+    "test": "npm run lint && npm run mocha-test",
     "mocha-test": "mocha --harmony-async-await --reporter spec tests/*.js",
     "lint": "eslint ."
   },

@@ -52,11 +52,11 @@ const home = async ctx => {
     // folders without a pull request are pushed to the bottom
     branchData.sort((a, b) => {
       if (!a.created || !b.created) return -1;
-      return (new Date(b.created)).getTime() - (new Date(a.created)).getTime();
+      return new Date(b.created).getTime() - new Date(a.created).getTime();
     });
 
-    const withUrl = branchData.filter(bd => bd.pullUrl)
-    const withoutUrl = branchData.filter(bd => !bd.pullUrl)
+    const withUrl = branchData.filter(bd => bd.pullUrl);
+    const withoutUrl = branchData.filter(bd => !bd.pullUrl);
 
     const tmpl = template({
       items: [...withUrl, ...withoutUrl]

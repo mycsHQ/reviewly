@@ -1,5 +1,3 @@
-process.env.ROOT_FOLDER = './tests';
-
 /**
  * Module dependencies.
  */
@@ -14,8 +12,8 @@ const request = supertest.agent(apiUnderTest.listen());
 /**
  * Tests for the "robots.txt" route
  */
-describe('Reviewly', () => {
-  it('should send robots.txt on the main domain', (done) => {
+describe('Reviewly - robots.txt', () => {
+  it('should send robots.txt on the main domain', done => {
     request
       .get('/robots.txt')
       .set('host', 'mycs.dev')
@@ -23,7 +21,7 @@ describe('Reviewly', () => {
       .expect('User-agent: *\nDisallow: /', done);
   });
 
-  it('should send robots.txt on subdomains', (done) => {
+  it('should send robots.txt on subdomains', done => {
     request
       .get('/robots.txt')
       .set('host', 'de.stub.mycs.dev')
