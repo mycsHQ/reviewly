@@ -5,6 +5,6 @@ machine:
 
 deployment:
   dev:
-    branch: github-api
+    branch: master
     commands:
       - pm2 deploy ecosystem.config.js production
