@@ -1,6 +1,7 @@
 {
   "name": "reviewly",
-  "description": "Tiny NodeJS module to serve a given folder based on a subdomain",
+  "description":
+    "Tiny NodeJS module to serve a given folder based on a subdomain",
   "version": "1.1.0",
   "main": "index.js",
   "author": "Nicolas Ritouet <nicolas@mycs.com>",
@@ -11,19 +12,24 @@
   "scripts": {
     "start": "node --harmony-async-await src/index.js",
     "watch": "nodemon --harmony-async-await src/index.js",
-    "dev": "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
-    "test": "npm run lint && mocha --harmony-async-await --reporter spec tests/*.js",
+    "dev":
+      "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
+    "test": "npm run lint && npm run mocha-test",
+    "mocha-test": "mocha --harmony-async-await --reporter spec tests/*.js",
     "lint": "eslint ."
   },
   "dependencies": {
     "debug": "^2.3.2",
     "fs-extra": "^1.0.0",
+    "graphql-request": "^1.4.0",
     "koa": "next",
     "koa-bodyparser": "^3.2.0",
     "koa-logger": "next",
     "koa-router": "^7.0.1",
     "koa-send": "3",
-    "pm2": "^2.1.4"
+    "koa-views": "^6.1.3",
+    "pm2": "^2.1.4",
+    "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
     "eslint": "^3.9.1",
