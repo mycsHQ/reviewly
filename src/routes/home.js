@@ -25,7 +25,7 @@ const home = async ctx => {
   const folderList = utils.getDirectories(path.join(rootFolder, featureFolder));
 
   try {
-    const ghData = await rq;
+    const ghData = await rq();
     const pulls = ghData.repository.pullRequests.edges;
     const branchData = folderList.map(folder => {
       const pullData = pulls.find(

@@ -7,6 +7,8 @@ const client = new GraphQLClient('https://api.github.com/graphql', {
   }
 });
 
+const CACHETIME = 2 * 60 * 1000; // 120s
+
 const query = `
 {
   repository(owner: "mycsHQ", name: "configurator-frontend") {
@@ -41,6 +43,27 @@ const query = `
 }
 `;
 
-module.exports = client.request(query).catch(e => {
-  debug('api request error', e);
-});
+let cache = {
+  time: Date.now(),
+  content: null
+};
+
+module.exports = () => {
+  if (cache.content && Date.now() - cache.time < CACHETIME) {
+    return Promise.resolve(cache.content);
+  }
+
+  return client
+    .request(query)
+    .then(content => {
+      cache = {
+        time: Date.now(),
+        content
+      };
+
+      return content;
+    })
+    .catch(e => {
+      debug('api request error', e);
+    });
+};
