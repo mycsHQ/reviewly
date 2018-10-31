@@ -13,7 +13,7 @@ const config = {
     environment: 'local',
     port: process.env.PORT || 3000,
     rootFolder: process.env.ROOT_FOLDER || process.cwd(),
-    sourceFolder: 'reviewly/src',
+    sourceFolder: 'src',
     featureFolder: 'features'
   },
   dev: {
