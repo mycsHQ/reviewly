@@ -1,0 +1,62 @@
+# The IP of the deployment instance is stored in the settings of Circleci (with the name FEATURE_DEPLOYEMENT_IP)
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:7
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: yarn
+          command: yarn --frozen-lockfile
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - run:
+          name: 'Deploy'
+          command: pm2 deploy ecosystem.config.js production
+
+# version: 2
+# jobs:
+#   build:
+#     working_directory: ~/masterfeed
+#     docker:
+#       - image: circleci/node:8.10
+      
+#     steps:
+#       - checkout
+
+#       - restore_cache:
+#           key: dependency-cache-{{ checksum "yarn.lock" }}
+
+#       - run:
+#           name: yarn
+#           command: yarn --frozen-lockfile
+
+#       - save_cache:
+#           key: dependency-cache-{{ checksum "yarn.lock" }}
+#           paths:
+#             - ./node_modules
+
+#       - run:
+#           name: test
+#           command: npm test
+
+#       - deploy:
+#           name: Deploy master
+#           command: |
+#             case "${CIRCLE_BRANCH}" in
+#             'master')
+#               npm run deploy
+#               ;;
+#             'production')
+#               npm run deploy-prod
+#               ;;
+#             esac
