@@ -16,7 +16,8 @@
       "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
     "test": "npm run lint && npm run mocha-test",
     "mocha-test": "mocha --harmony-async-await --reporter spec tests/*.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy": "pm2 deploy ecosystem.config.js production"
   },
   "dependencies": {
     "debug": "^2.3.2",
