@@ -1,7 +1,6 @@
 {
   "name": "reviewly",
-  "description":
-    "Tiny NodeJS module to serve a given folder based on a subdomain",
+  "description": "Tiny NodeJS module to serve a given folder based on a subdomain",
   "version": "1.1.0",
   "main": "index.js",
   "author": "Nicolas Ritouet <nicolas@mycs.com>",
@@ -12,8 +11,7 @@
   "scripts": {
     "start": "node --harmony-async-await src/index.js",
     "watch": "nodemon --harmony-async-await src/index.js",
-    "dev":
-      "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
+    "dev": "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
     "test": "npm run lint && npm run mocha-test",
     "mocha-test": "mocha --harmony-async-await --reporter spec tests/*.js",
     "lint": "eslint ."
