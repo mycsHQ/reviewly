@@ -7,6 +7,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "05:2c:52:a8:80:ce:98:1d:90:45:b1:92:81:ea:d4:af"
+      - run: mkdir -r ~/.ssh
       - run: ssh-keyscan -H 95.85.30.105 >> ~/.ssh/known_hosts
       - checkout
       - run: npm install
