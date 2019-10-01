@@ -5,4 +5,5 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
+      - run: npm install
       - run: pm2 deploy ecosystem.config.js production # push to prod
