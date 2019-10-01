@@ -5,8 +5,8 @@ jobs:
       - image: circleci/node:8
     steps:
       - add_ssh_keys:
-        fingerprints:
-          - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+          fingerprints:
+            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
       - checkout
       - run: npm install
       - run: ./node_modules/.bin/pm2 deploy ecosystem.config.js production # push to prod
