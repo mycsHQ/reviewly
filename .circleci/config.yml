@@ -8,7 +8,7 @@ jobs:
           fingerprints:
             - "05:2c:52:a8:80:ce:98:1d:90:45:b1:92:81:ea:d4:af"
       - run: mkdir ~/.ssh
-      - run: ssh-keyscan -H `process.env.FEATURE_DEPLOYEMENT_IP` >> ~/.ssh/known_hosts
+      - run: ssh-keyscan -H ${FEATURE_DEPLOYEMENT_IP} >> ~/.ssh/known_hosts
       - checkout
       - run: npm install
       - run: ./node_modules/.bin/pm2 deploy ecosystem.config.js production # push to prod
