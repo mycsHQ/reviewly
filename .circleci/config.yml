@@ -7,6 +7,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "05:2c:52:a8:80:ce:98:1d:90:45:b1:92:81:ea:d4:af"
+      - run: ssh-keyscan -H 95.85.30.105 >> /home/`process.env.USER`/.ssh/known_hosts
       - checkout
       - run: npm install
       - run: ./node_modules/.bin/pm2 deploy ecosystem.config.js production # push to prod
