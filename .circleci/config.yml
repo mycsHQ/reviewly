@@ -6,7 +6,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+            - "05:2c:52:a8:80:ce:98:1d:90:45:b1:92:81:ea:d4:af"
       - checkout
       - run: npm install
       - run: ./node_modules/.bin/pm2 deploy ecosystem.config.js production # push to prod
