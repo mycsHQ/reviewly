@@ -6,4 +6,4 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: pm2 deploy ecosystem.config.js production # push to prod
+      - run: ./node_modules/.bin/pm2 deploy ecosystem.config.js production # push to prod
