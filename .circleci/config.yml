@@ -4,8 +4,7 @@ jobs:
     docker: 
       - image: circleci/node:8
     steps:
-      - run: mkdir ~/.ssh
-      - run: ssh-keyscan -H ${FEATURE_DEPLOYEMENT_IP} >> ~/.ssh/known_hosts
       - checkout
+      - run: mkdir ~/.ssh & ssh-keyscan -H ${FEATURE_DEPLOYEMENT_IP} >> ~/.ssh/known_hosts
       - run: npm install
       - run: ./node_modules/.bin/pm2 deploy ecosystem.config.js production # push to prod
