@@ -6,14 +6,14 @@
   "author": "Nicolas Ritouet <nicolas@mycs.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=7"
+    "node": ">=12"
   },
   "scripts": {
-    "start": "node --harmony-async-await src/index.js",
-    "watch": "nodemon --harmony-async-await src/index.js",
-    "dev": "nodejs-dashboard -- nodemon --harmony-async-await -r nodejs-dashboard src/index.js",
+    "start": "node src/index.js",
+    "watch": "nodemon src/index.js",
+    "dev": "nodejs-dashboard -- nodemon -r nodejs-dashboard src/index.js",
     "test": "npm run lint && npm run mocha-test",
-    "mocha-test": "mocha --harmony-async-await --reporter spec tests/*.js",
+    "mocha-test": "mocha --reporter spec tests/*.js",
     "lint": "eslint ."
   },
   "dependencies": {
