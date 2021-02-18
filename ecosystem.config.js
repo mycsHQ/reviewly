@@ -31,7 +31,7 @@ module.exports = {
       path: '/home/deploy',
       'post-deploy': `export GITHUB_TOKEN=${
         process.env.GITHUB_TOKEN
-      } && yarn install --frozen-lockfile && node_modules/.bin/pm2 startOrRestart ecosystem.config.js --env production`
+      } && npm ci && node_modules/.bin/pm2 startOrRestart ecosystem.config.js --env production`
     }
   }
 };
