@@ -26,7 +26,7 @@ module.exports = {
     production: {
       user: 'deploy',
       host: process.env.FEATURE_DEPLOYEMENT_IP,
-      ref: 'origin/github-api',
+      ref: 'origin/circleciv2',
       repo: 'https://github.com/mycsHQ/reviewly.git',
       path: '/home/deploy',
       'post-deploy': `export GITHUB_TOKEN=${
