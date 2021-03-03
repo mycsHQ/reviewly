@@ -1,0 +1,10 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run: ssh-keyscan -H ${FEATURE_DEPLOYEMENT_IP} >> ~/.ssh/known_hosts
+      - run: npm ci
+      - run: ./node_modules/.bin/pm2 deploy ecosystem.config.js production # push to prod
