@@ -3,7 +3,7 @@ const debug = require('debug')('reviewly');
 
 const client = new GraphQLClient('https://api.github.com/graphql', {
   headers: {
-    Authorization: 'Bearer ' + process.env.GITHUB_TOKEN
+    Authorization: 'Bearer ' + process.env.ACCESS_TOKEN
   }
 });
 
@@ -11,7 +11,7 @@ const CACHETIME = 2 * 60 * 1000; // 120s
 
 const query = `
 {
-  repository(owner: "mycsHQ", name: "configurator-frontend") {
+  repository(owner: "mycsHQ", name: "mycs-js") {
     name
     description
     diskUsage

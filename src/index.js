@@ -32,7 +32,7 @@ app.use(router.allowedMethods());
  */
 router.post('/webhook', webhook);
 router.get('/robots.txt', robots);
-router.get('*', wildcard);
+router.get('(.*)', wildcard);
 
 /**
  * Start the server

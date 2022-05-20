@@ -6,7 +6,7 @@
 
 ## Description
 
-This app will serve the content of a folder based on the subdomain.  
+This app will serve the content of a folder based on the subdomain.
 eg. `de.my-branch.mydomain.tld` will serve the content of the folder `$HOME/features/my-branch`.
 
 This app also contains a webhook to delete a folder when a branch is deleted.
@@ -22,7 +22,7 @@ yarn run start
 
 Put `reviewly/` in another folder, e. g. `reviewly-wrapper/`.
 Create `features/` folder inside `reviewly-wrapper/`
-Run: `ROOT_FOLDER=~/mycs/reviewly-wrapper GITHUB_TOKEN=<github token> NODE_ENV=local npm start`
+Run: `ROOT_FOLDER=~/mycs/reviewly-wrapper ACCESS_TOKEN=<github token> NODE_ENV=local npm start`
 (you can find the github token in circleci)
 
 ### Prerequisites

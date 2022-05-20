@@ -1,0 +1,21 @@
+name: Reviewly CI/CD flow
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Extract branch name
+        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn install --frozen-lockfile
+      - if: env.BRANCH == 'master'
+        run: yarn pm2 deploy ecosystem.config.js production
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          INSTANCE_IP: ${{ secrets.INSTANCE_IP }}
