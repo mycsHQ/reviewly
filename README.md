@@ -52,3 +52,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Continuous deployment
 
 Thanks to pm2 deploy, circleci will automatically deployd a new release on a given server.
+
+<!-- CI Trigger -->
